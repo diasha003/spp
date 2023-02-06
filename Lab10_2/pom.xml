@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>Lab10</artifactId>
+    <artifactId>Lab10_2</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Lab10</name>
+    <name>Lab10_2</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -39,10 +39,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>8.0.32</version>
+        </dependency>
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.17</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -65,7 +71,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.lab10/com.example.lab10.HelloApplication</mainClass>
+                            <mainClass>com.example.lab10_2/com.example.lab10_2.HelloApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

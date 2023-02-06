@@ -1,4 +1,4 @@
-package com.example.lab10.Model;
+package com.example.lab10_2.Model;
 
 public class Record {
 
