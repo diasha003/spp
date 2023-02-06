@@ -2,12 +2,11 @@ package com.example.lab10.Model;
 
 public class Record {
 
-
-    int id;
-    String makerName;
-    String dateRelease;
-    String recordName;
-    String genreName;
+    private int id;
+    private String makerName;
+    private String dateRelease;
+    private String recordName;
+    private String genreName;
 
 
     public Record (  int id, String makerName, String dateRelease, String recordName, String genreName) {
