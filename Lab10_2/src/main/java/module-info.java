@@ -6,4 +6,7 @@ module com.example.lab10_2 {
 
     opens com.example.lab10_2 to javafx.fxml;
     exports com.example.lab10_2;
+    exports com.example.lab10_2.Controllers;
+    opens com.example.lab10_2.Controllers to javafx.fxml;
+    exports com.example.lab10_2.Model;
 }
