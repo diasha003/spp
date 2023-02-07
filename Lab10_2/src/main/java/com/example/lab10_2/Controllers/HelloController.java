@@ -95,7 +95,29 @@ public class HelloController {
 
 
     }
-    
+
+
+    public  void onClickAdd(){
+
+        try {
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+
+            /////
+
+            fxmlLoader.setLocation(getClass().getResource("/com/example/lab10_2/add.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 400, 300);
+            Stage stage = new Stage();
+            stage.setTitle("Add new record");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Stage stage = new Stage();
+
+    }
 
     public void onClickAllInfo(){
         try {
@@ -116,7 +138,15 @@ public class HelloController {
     }
 
 
-
+    public void onClickRefresh(){
+        listView.clear();
+        try {
+            listView = FXCollections.observableArrayList(bdController.connection()); //получение списка данных из БД
+        } catch (SQLException | ClassNotFoundException exception){
+            exception.printStackTrace();
+        };
+        records.setItems(listView);
+    }
 
 
 }

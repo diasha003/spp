@@ -45,6 +45,71 @@ public class DBConnector {
         return null;
     }
 
+    public static List<String> getMaker(){
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection(url, user, password);
+            Statement stmt = con.createStatement();
+
+            List<String> list = new ArrayList<>();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM maker");
+
+            while(rs.next()){
+                list.add(rs.getString("name"));
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public static List<String> getGenre(){
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection(url, user, password);
+            Statement stmt = con.createStatement();
+
+            List<String> list = new ArrayList<>();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM genre");
+
+            while(rs.next()){
+                list.add(rs.getString("name"));
+            }
+            return list;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    public static void insertNewRecord(Record newRecord){
+
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection(url, user, password);
+            Statement stmt = con.createStatement();
+            String sql = "INSERT INTO record ( id_maker, date_release, name, id_genre) VALUES\n" +
+                    "((select id from maker where name = " + newRecord.getMakerName() + "), " + newRecord.getDateRelease() + ", " +
+                    newRecord.getRecordName() + ", " + "(select id from genre where name = " + newRecord.getGenreName() + "));";
+            /*
+            INSERT INTO record ( id_maker, date_release, name, id_genre) VALUES ((select id from maker where name = 'Atlantic'), '2021-2-3', 'test', (select id from genre where name = 'Hip Hop'))
+             */
+
+            stmt.execute(sql);
+            helloController.onClickRefresh();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+
+
+
+
     public static void getAllInfo(int id) throws SQLException{
 
         Connection con = DriverManager.getConnection(url, user, password);
