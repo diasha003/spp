@@ -2,14 +2,20 @@ package com.example.lab10_2.Controllers;
 
 import com.example.lab10_2.Connector.DBConnector;
 import com.example.lab10_2.Model.Record;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 
@@ -44,6 +50,12 @@ public class HelloController {
 
     private final DBConnector bdController;
 
+    public  static int idNew;
+    public  static String makerNameNew;
+    public  static String dateReleaseNew;
+    public  static String recordNameNew;
+    public  static String genreNameNew;
+
     private ObservableList<Record> listView = FXCollections.observableArrayList(); //список объектов
 
     public HelloController() {
@@ -66,18 +78,42 @@ public class HelloController {
         records.setItems(listView);
 
 
+        TableView.TableViewSelectionModel<Record> selectionModel = records.getSelectionModel(); //выбранная запись в таблице
+        selectionModel.selectedItemProperty().addListener(new ChangeListener<Record>(){
+
+            public void changed(ObservableValue<? extends Record> observableValue, Record oldVal, Record newVal){
+                if(newVal != null) {
+                    idNew = newVal.getId();
+                    makerNameNew = newVal.getMakerName();
+                    recordNameNew = newVal.getRecordName();
+                    dateReleaseNew = newVal.getDateRelease();
+                    genreNameNew = newVal.getGenreName();
+                }
+
+            }
+        });
+
 
     }
+    
 
-   /* private void initData() {
-        listView.add(new Record(1, "Alex", "qwerty", "alex@mail.com", "dsf"));
-        listView.add(new Record(2, "Bob", "dsfsdfw", "bob@mail.com","dsf"));
-        listView.add(new Record(3, "Jeck", "dsfdsfwe", "Jeck@mail.com", "dsf"));
-        listView.add(new Record(4, "Mike", "iueern", "mike@mail.com", "dsf"));
-        listView.add(new Record(5, "colin", "woeirn", "colin@mail.com", "dsf"));
-    }*/
+    public void onClickAllInfo(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            if (idNew < 1) return;
+            DBConnector.getAllInfo(idNew);
+            fxmlLoader.setLocation(getClass().getResource("/com/example/lab10_2/info.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 500, 300);
+            Stage stage = new Stage();
+            stage.setTitle("All info");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException exception){
 
-
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 

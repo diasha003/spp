@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="262.0" prefWidth="420.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab10_2.Controllers.InfoController">
+   <children>
+      <Text fx:id="makerName" layoutX="182.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="210.39999999999986">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Label layoutX="64.0" layoutY="50.0" prefHeight="27.0" prefWidth="111.0" text="Maker:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="85.0" prefHeight="27.0" prefWidth="118.0" text="Release date:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="120.0" prefHeight="27.0" prefWidth="118.0" text="Record name:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="155.0" prefHeight="27.0" prefWidth="130.0" text="Genre name:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Text fx:id="releaseDate" layoutX="182.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="recordName" layoutX="182.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="genreName" layoutX="182.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Label layoutX="64.0" layoutY="190.0" text="ID:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Text fx:id="id" layoutX="182.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
