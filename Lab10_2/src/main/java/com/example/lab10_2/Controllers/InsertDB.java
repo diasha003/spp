@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class InsertDB {
 
@@ -39,10 +40,17 @@ public class InsertDB {
 
     public void onClickOk(){
         if(comboBoxMaker.getValue() == null || textFieldReleaseDate.getText() == null ||
-                textFieldRecordName.getText() == null || comboBoxGenre.getValue() == null) return;
+                textFieldRecordName.getText() == null || comboBoxGenre.getValue() == null) {
+            Stage stage = (Stage) buttonOk.getScene().getWindow();
+            stage.close();
+            return;
+        }
 
         Record newRecord = new Record(1, comboBoxMaker.getValue(),textFieldReleaseDate.getText(), textFieldRecordName.getText(), comboBoxGenre.getValue());
         DBConnector.insertNewRecord(newRecord);
+
+        Stage stage = (Stage) buttonOk.getScene().getWindow();
+        stage.close();
 
     }
 

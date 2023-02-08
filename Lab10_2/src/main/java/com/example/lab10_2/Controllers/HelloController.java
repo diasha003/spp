@@ -89,22 +89,15 @@ public class HelloController {
                     dateReleaseNew = newVal.getDateRelease();
                     genreNameNew = newVal.getGenreName();
                 }
-
             }
         });
-
-
     }
 
 
     public  void onClickAdd(){
 
         try {
-
             FXMLLoader fxmlLoader = new FXMLLoader();
-
-            /////
-
             fxmlLoader.setLocation(getClass().getResource("/com/example/lab10_2/add.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 400, 300);
             Stage stage = new Stage();
@@ -114,8 +107,6 @@ public class HelloController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        Stage stage = new Stage();
 
     }
 

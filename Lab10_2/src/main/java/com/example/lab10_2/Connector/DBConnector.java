@@ -4,6 +4,7 @@ import com.example.lab10_2.Controllers.HelloController;
 import com.example.lab10_2.Controllers.InfoController;
 import com.example.lab10_2.Model.Record;
 import java.sql.*;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,29 +85,20 @@ public class DBConnector {
 
 
     public static void insertNewRecord(Record newRecord){
-
-        Connection con = null;
-        try {
-            con = DriverManager.getConnection(url, user, password);
-            Statement stmt = con.createStatement();
-            String sql = "INSERT INTO record ( id_maker, date_release, name, id_genre) VALUES\n" +
-                    "((select id from maker where name = " + newRecord.getMakerName() + "), " + newRecord.getDateRelease() + ", " +
-                    newRecord.getRecordName() + ", " + "(select id from genre where name = " + newRecord.getGenreName() + "));";
-            /*
-            INSERT INTO record ( id_maker, date_release, name, id_genre) VALUES ((select id from maker where name = 'Atlantic'), '2021-2-3', 'test', (select id from genre where name = 'Hip Hop'))
-             */
-
-            stmt.execute(sql);
+        String sql = "INSERT INTO record ( id_maker, date_release, name, id_genre) VALUES ((select id from maker where name = ?),\n" +
+                    "(?), (?), (select id from genre where name = ?))";
+        try ( Connection con  = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, newRecord.getMakerName());
+            ps.setString(2, newRecord.getDateRelease());
+            ps.setString(3,  newRecord.getRecordName() );
+            ps.setString(4, newRecord.getGenreName());
+            ps.executeUpdate();
             helloController.onClickRefresh();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch (SQLException e){
+            e.printStackTrace();
         }
-
-
     }
-
-
-
 
 
 
