@@ -9,10 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -48,6 +45,13 @@ public class HelloController {
 
     @FXML
     private TableView<Record> records;
+
+    @FXML
+    private Button buttonFilterGenre;
+
+    @FXML
+    private TextField textFieldFilterGenre;
+
 
     private final DBConnector bdController;
 
@@ -124,7 +128,10 @@ public class HelloController {
     public void onClickAllInfo(){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            if (idNew < 1) return;
+            if (idNew < 1){
+                infoBox("Select the record, please!", "Warning", null);
+                return;
+            }
             DBConnector.getAllInfo(idNew);
             fxmlLoader.setLocation(getClass().getResource("/com/example/lab10_2/info.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 500, 300);
@@ -162,6 +169,7 @@ public class HelloController {
     }
 
     public void onClickRefresh(){
+        textFieldFilterGenre.setText("");
         listView.clear();
         try {
             listView = FXCollections.observableArrayList(bdController.connection()); //получение списка данных из БД
@@ -169,6 +177,20 @@ public class HelloController {
             exception.printStackTrace();
         };
         records.setItems(listView);
+    }
+
+    public void onClickFilterGenre(){
+        if (textFieldFilterGenre.getText().isEmpty()){
+            infoBox("Enter the name of the genre, please!", "Warning", null);
+            return;
+        }
+        listView.clear();
+        listView = FXCollections.observableArrayList(bdController.getFilterRecords(textFieldFilterGenre.getText()));
+        if (listView.isEmpty()) {
+            infoBox("No records found!", "Warning", null);
+        }
+        records.setItems(listView);
+
     }
 
 

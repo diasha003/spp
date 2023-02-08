@@ -132,6 +132,28 @@ public class DBConnector {
         }
     }
 
+    public  List<Record> getFilterRecords(String filterGenre){
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection(url, user, password);
+            Statement stmt = con.createStatement();
+            List<Record> list = new ArrayList<>();
+            String sql = "SELECT record.id, maker.name as maker, date_release, record.name, genre.name as genre FROM record"+
+                    " INNER JOIN maker ON (record.id_maker=maker.id)"+
+                    " INNER JOIN genre ON (record.id_genre=genre.id)"+
+                    " WHERE  genre.name= " + "'" + filterGenre + "'";
+            //System.out.println(sql);
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                list.add(new Record(rs.getInt("id"), rs.getString("maker"), rs.getString("date_release"),
+                        rs.getString("name"), rs.getString("genre")) );
+            }
+            return list;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static void getAllInfo(int id) throws SQLException{
 
