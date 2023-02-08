@@ -107,8 +107,28 @@ public class DBConnector {
             Statement stmt = con.createStatement();
             String sql = "DELETE FROM record WHERE ID = " + String.valueOf(id);
             stmt.execute(sql);
+            helloController.onClickRefresh();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+
+    public static void updateRecord(Record updateRecord){
+
+        String sql =  "UPDATE record SET id_maker = (SELECT id FROM maker where name = ?), date_release = ?,  name = ?, id_genre = (SELECT id FROM genre where name = ?) " +
+                "WHERE id = ?";
+        try ( Connection con  = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, updateRecord.getMakerName());
+            ps.setString(2, updateRecord.getDateRelease());
+            ps.setString(3, updateRecord.getRecordName() );
+            ps.setString(4, updateRecord.getGenreName());
+            ps.setString(5, String.valueOf(updateRecord.getId()));
+            ps.executeUpdate();
+            helloController.onClickRefresh();
+        } catch (SQLException e){
+            e.printStackTrace();
         }
     }
 

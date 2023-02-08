@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="314.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="com.example.lab10_2.Controllers.UpdateDB">
+<children>
+    <ComboBox fx:id="comboBoxMaker" layoutX="80.0" layoutY="50.0" prefHeight="26.0" prefWidth="254.0" promptText="Maker" />
+    <TextField fx:id="textFieldReleaseDate" layoutX="80.0" layoutY="100.0" prefHeight="26.0" prefWidth="254.0" promptText="Release date..." />
+    <TextField fx:id="textFieldRecordName" layoutX="80.0" layoutY="150.0" prefHeight="26.0" prefWidth="253.0" promptText="Record name..." />
+    <ComboBox fx:id="comboBoxGenre" layoutX="80.0" layoutY="200.0" prefHeight="26.0" prefWidth="254.0" promptText="Genre" />
+    <Button fx:id="buttonOk" layoutX="173.0" layoutY="256.0" mnemonicParsing="false"  prefHeight="26.0" prefWidth="60.0" text="Ok" onAction="#onClickOk"/>
+</children>
+</AnchorPane>

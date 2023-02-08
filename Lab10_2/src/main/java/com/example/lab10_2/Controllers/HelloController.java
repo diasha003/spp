@@ -102,8 +102,6 @@ public class HelloController {
                 return;
             }
             DBConnector.deleteRecord(idNew);
-            infoBox("The entry has been deleted, refresh the page, please!", "Warning", null);
-
 
     }
 
@@ -141,6 +139,28 @@ public class HelloController {
         }
     }
 
+
+    public void onClickUpdate(){
+        if (idNew < 1) {
+            infoBox("Select the record to update, please!", "Warning", null);
+            return;
+        }
+
+        try {
+            UpdateDB.setData(idNew, makerNameNew, dateReleaseNew, recordNameNew, genreNameNew);
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/com/example/lab10_2/update.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 400, 300);
+            Stage stage = new Stage();
+            stage.setTitle("Update this record");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
     public void onClickRefresh(){
         listView.clear();
         try {
@@ -150,7 +170,6 @@ public class HelloController {
         };
         records.setItems(listView);
     }
-
 
 
     public static void infoBox(String infoMessage, String titleBar, String headerMessage)
