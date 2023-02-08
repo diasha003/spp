@@ -192,8 +192,7 @@ public class HelloController {
         records.setItems(listView);
 
     }
-
-
+    
     public static void infoBox(String infoMessage, String titleBar, String headerMessage)
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
