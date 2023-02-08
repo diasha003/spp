@@ -23,7 +23,6 @@ public class UpdateDB {
 
     @FXML
     private TextField textFieldReleaseDate;
-
     @FXML
     private Button buttonOk;
 

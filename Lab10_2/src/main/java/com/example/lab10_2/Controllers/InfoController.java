@@ -15,17 +15,13 @@ public class InfoController {
 
     @FXML
     private Text releaseDate;
-
     @FXML
     private Text id;
-
-
     public  static int idTEXT;
     public  static String makerNameTEXT;
     public  static String dateReleaseTEXT;
     public  static String recordNameTEXT;
     public  static String genreNameTEXT;
-
 
     public static void getData(int id,  String makerName, String dateRelease, String recordName, String genreName){
         idTEXT = id;
@@ -43,9 +39,4 @@ public class InfoController {
         genreName.setText(genreNameTEXT);
         id.setText(String.valueOf(idTEXT));
     }
-
-
-
-
-
 }

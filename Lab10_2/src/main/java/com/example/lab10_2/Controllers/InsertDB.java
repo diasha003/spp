@@ -51,7 +51,5 @@ public class InsertDB {
 
         Stage stage = (Stage) buttonOk.getScene().getWindow();
         stage.close();
-
     }
-
 }
