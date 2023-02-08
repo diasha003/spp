@@ -100,6 +100,17 @@ public class DBConnector {
         }
     }
 
+    public static  void deleteRecord(int id){
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection(url, user, password);
+            Statement stmt = con.createStatement();
+            String sql = "DELETE FROM record WHERE ID = " + String.valueOf(id);
+            stmt.execute(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     public static void getAllInfo(int id) throws SQLException{

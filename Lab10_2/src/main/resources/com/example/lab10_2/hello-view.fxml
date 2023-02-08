@@ -23,7 +23,7 @@
                 </TableView>
                 <Button fx:id="Add" layoutX="452.0" layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #1E90FF;" text="Add" onAction="#onClickAdd"/>
                 <Button fx:id="Update" layoutX="452.0" layoutY="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #FFFF00;" text="Update"  />
-                <Button fx:id="Delete" layoutX="452.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #FF0000;" text="Delete" />
+                <Button fx:id="Delete" layoutX="452.0" layoutY="200.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #FF0000;" text="Delete" onAction="#onClickDelete" />
                 <Button fx:id="Refresh" layoutX="452.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #00FF00;" text="Refresh" onAction="#onClickRefresh"/>
                 <Button fx:id="Info" layoutX="452.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" style="-fx-background-color: #C0C0C0;" text="Info" onAction="#onClickAllInfo"/>
             </children>

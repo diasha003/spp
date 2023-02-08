@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -94,6 +95,18 @@ public class HelloController {
     }
 
 
+    public void onClickDelete(){
+
+            if (idNew < 1) {
+                infoBox("Select the record to delete, please!", "Warning", null);
+                return;
+            }
+            DBConnector.deleteRecord(idNew);
+            infoBox("The entry has been deleted, refresh the page, please!", "Warning", null);
+
+
+    }
+
     public  void onClickAdd(){
 
         try {
@@ -128,7 +141,6 @@ public class HelloController {
         }
     }
 
-
     public void onClickRefresh(){
         listView.clear();
         try {
@@ -140,4 +152,13 @@ public class HelloController {
     }
 
 
+
+    public static void infoBox(String infoMessage, String titleBar, String headerMessage)
+    {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titleBar);
+        alert.setHeaderText(headerMessage);
+        alert.setContentText(infoMessage);
+        alert.showAndWait();
+    }
 }
