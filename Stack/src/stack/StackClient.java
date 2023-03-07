@@ -2,10 +2,6 @@ package stack;
 
 import java.util.Scanner;
 
-
-/**
- * A test client.
- */
 public class StackClient {
     public static void main(String[] args) {
         Stack<String> s = new Stack<String>();
